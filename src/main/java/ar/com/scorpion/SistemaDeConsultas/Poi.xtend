@@ -1,12 +1,15 @@
 package ar.com.scorpion.SistemaDeConsultas
 
+import ar.com.scorpion.SistemaDeConsultas.Exception.BusinessException
 import java.util.Collection
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.joda.time.DateTime
 import org.uqbar.geodds.Point
+import org.uqbar.commons.model.Entity
 
 @Accessors
-class Poi {
+abstract class Poi extends Entity {
+	
 	String nombre
 	Collection<String> palabrasClave
 	/* Longitud (Norte Sur) X
@@ -64,4 +67,6 @@ class Poi {
 	
 	def removePalabraClave(String palabra) {
 		palabrasClave.remove(palabrasClave.findFirst[p | p.equals(palabra)])
-	}}
+	}
+
+}
