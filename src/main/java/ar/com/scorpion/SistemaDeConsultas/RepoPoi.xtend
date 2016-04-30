@@ -3,13 +3,13 @@ package ar.com.scorpion.SistemaDeConsultas
 import org.uqbar.commons.model.CollectionBasedRepo
 import java.util.function.Predicate
 
-class RepoPoI extends CollectionBasedRepo<Poi> {
+class RepoPoi extends CollectionBasedRepo<Poi> {
 	
-	static RepoPoI instance
+	static RepoPoi instance
 	
  	static def getInstance() {
         if (instance == null) {
-			instance = new RepoPoI
+			instance = new RepoPoi
 		}
         return instance
     }

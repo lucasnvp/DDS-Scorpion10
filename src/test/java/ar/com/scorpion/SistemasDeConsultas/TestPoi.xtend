@@ -6,18 +6,15 @@ import ar.com.scorpion.SistemaDeConsultas.Exception.BusinessException
 import ar.com.scorpion.SistemaDeConsultas.LocalComercial
 import ar.com.scorpion.SistemaDeConsultas.ParadaDeColectivo
 import ar.com.scorpion.SistemaDeConsultas.Poi
-import ar.com.scorpion.SistemaDeConsultas.RepoPoI
-import java.util.ArrayList
-import java.util.Collection
+import ar.com.scorpion.SistemaDeConsultas.RepoPoi
 import org.joda.time.DateTime
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.uqbar.geodds.Point
 
-
 class TestPoi {
-	RepoPoI repo
+	RepoPoi repo
 	Poi poiInvalidoParaTest
 	Poi poiLocalComercial1
 	Poi poiLocalComercial2
