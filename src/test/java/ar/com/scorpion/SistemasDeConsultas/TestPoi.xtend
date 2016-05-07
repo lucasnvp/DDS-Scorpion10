@@ -7,6 +7,8 @@ import ar.com.scorpion.SistemaDeConsultas.LocalComercial
 import ar.com.scorpion.SistemaDeConsultas.ParadaDeColectivo
 import ar.com.scorpion.SistemaDeConsultas.Poi
 import ar.com.scorpion.SistemaDeConsultas.RepoPoi
+import java.util.ArrayList
+import java.util.List
 import org.joda.time.DateTime
 import org.junit.Assert
 import org.junit.Before
@@ -14,7 +16,7 @@ import org.junit.Test
 import org.uqbar.geodds.Point
 
 class TestPoi {
-	RepoPoi repo
+	//Variables 
 	Poi poiInvalidoParaTest
 	Poi poiLocalComercial1
 	Poi poiLocalComercial2
@@ -56,23 +58,25 @@ class TestPoi {
 		poiCGPComuna4.agregarServicio("Rentas", 5, 10, 0, 18, 0)
 		poiCGPComuna5 = new CGP("CGPComuna5", -34.623073, -58.412468)
 		poiCGPComuna5.agregarServicio("Rentas", 5, 10, 0, 18, 0)
-		
-		//Creo el repositorio de pois
-//		repo.create(poiLocalComercial1)
-//		repo.create(poiLocalComercial2)
-//		repo.create(poiLocalComercial3)
-//		repo.create(poiLocalComercial4)
-//		
-//		repo.create(poiTestColectivo1)
-//		
-//		repo.create(poiBanco1)
-//		
-//		repo.create(poiCGPComuna1)
-//		repo.create(poiCGPComuna2)
-//		repo.create(poiCGPComuna3)
-//		repo.create(poiCGPComuna4)
-//		repo.create(poiCGPComuna5)
+	}
 	
+	@Before
+	def init() {
+		//Ingreso los bancos al repo
+//		RepoPoi.instance.create(poiBanco1)
+		//Ingreso las paradas de colectivo al repo
+		RepoPoi.instance.create(poiTestColectivo1)
+		//Ingreso los locales comerciales al repo
+//		RepoPoi.instance.create(poiLocalComercial1)
+//		RepoPoi.instance.create(poiLocalComercial2)
+//		RepoPoi.instance.create(poiLocalComercial3)
+//		RepoPoi.instance.create(poiLocalComercial4)
+//		//Ingreso los CGP
+//		RepoPoi.instance.create(poiCGPComuna1)
+//		RepoPoi.instance.create(poiCGPComuna2)
+//		RepoPoi.instance.create(poiCGPComuna3)
+//		RepoPoi.instance.create(poiCGPComuna4)
+//		RepoPoi.instance.create(poiCGPComuna5)
 	}
 	
 	@Test
@@ -130,15 +134,17 @@ class TestPoi {
 	
 	/* Comienzo de test de busqueda de puntos */
 	
-//	@Test
-//	// Test filtrando por numero de linea
-//	def void testFiltrarParadaDeColectivoPorNroDeLinea() {
-//		var Collection<Poi> retornoEsperado = new ArrayList()
+	@Test
+	// Test filtrando por numero de linea
+	def void testFiltrarParadaDeColectivoPorNroDeLinea() {
+//		var List<Poi> retornoEsperado = new ArrayList()
 //		retornoEsperado.add(poiTestColectivo1)
 //		
-//		Assert.assertArrayEquals(retornoEsperado, repo.filtrarPois("71") )
-//	}
-//	
+//		Assert.assertArrayEquals(retornoEsperado, RepoPoi.instance.search("Parada 1") )
+
+		Assert.assertEquals(1, RepoPoi.instance.size)
+	}
+	
 //	@Test
 //	//Test filtrando por rubro
 //	def void testFiltrarBancoPorRubro() {
@@ -189,7 +195,7 @@ class TestPoi {
 //		
 //		Assert.assertArrayEquals(retornoEsperado, repo.filtrarPois("hamburguesa"))
 //	}
-	
+//	
 	/* Comienzo de test de calculos de disponibilidad */
 	
 	@Test

@@ -1,4 +1,4 @@
-package ar.com.scorpion.SistemaDeConsultas
+package ar.com.scorpion.SistemaDeConsultas.Disponibilidad
 
 import ar.com.scorpion.SistemaDeConsultas.Disponibilidad.IntervalosDeDisponibilidad
 import java.util.ArrayList

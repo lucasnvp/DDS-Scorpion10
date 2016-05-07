@@ -1,33 +1,28 @@
 package ar.com.scorpion.SistemaDeConsultas
 
+import ar.com.scorpion.SistemaDeConsultas.Disponibilidad.DisponibilidadDelPoi
 import ar.com.scorpion.SistemaDeConsultas.Exception.BusinessException
 import java.util.Collection
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.joda.time.DateTime
-import org.uqbar.geodds.Point
 import org.uqbar.commons.model.Entity
+import org.uqbar.geodds.Point
 
 @Accessors
 abstract class Poi extends Entity {
 	
 	String nombre
 	Collection<String> palabrasClave
-	/* Longitud (Norte Sur) X
-	 * Latitud (Este Oeste) Y
-	 */
-	Double longitud
-	Double latitud
+
 	Point pointDelPoi
 	
 	String direccion
 	DisponibilidadDelPoi disponibilidadDelPoi
 	
-	def esValido(){
-		if( (nombre == "") || (latitud == null) || (longitud == null) ){
+	override validateCreate(){
+		if( (nombre == "") || (pointDelPoi == null)){
 			throw new BusinessException("El poi no es valido")
 		}
-		
-		true
 	}
 
 	def mtsAKms(Double mts){
@@ -36,9 +31,7 @@ abstract class Poi extends Entity {
 	
 	def seEncuentraAMenosDe(Double mts, Point otherPoint){
 		val kms = mtsAKms(mts)
-		
 		return ( kms > pointDelPoi.distance(otherPoint))
-	
 	}
 	
 	def consultaDeCercania(Point consultaDePoint){
@@ -54,19 +47,24 @@ abstract class Poi extends Entity {
 	}
 	
 	def contiene(String texto){
-		return (nombre.contains(texto) || (palabrasClave.findFirst[servicio | palabrasClave.contains(texto)] != null))
+		return (nombre.contains(texto) || (palabrasClave.exists[pClave | pClave.contains(texto)]) || contieneExtra(texto))
+	}
+	
+	def contieneExtra(String texto) {
+		return false
 	}
 
-	def agregarServicio(String nombreDelServicio,int diasDisponibles,int horaDeApertura,int minDeApertura,int horaDeCierre, int minDeCierre){
+	def void agregarServicio(String nombreDelServicio,int diasDisponibles,int horaDeApertura,int minDeApertura,int horaDeCierre, int minDeCierre) {
 		
 	}
+		
 	
 	def addPalabraClave(String palabra) {
 		palabrasClave.add(palabra)
 	}
 	
 	def removePalabraClave(String palabra) {
-		palabrasClave.remove(palabrasClave.findFirst[p | p.equals(palabra)])
+		palabrasClave.remove(palabra)
 	}
 
 }

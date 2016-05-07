@@ -9,6 +9,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.joda.time.DateTime
+import org.junit.After
 
 class TestRepoPoi {
 	
@@ -30,17 +31,28 @@ class TestRepoPoi {
 		poiLocalComercial4.configurarDisponibilidadDelPoi(6, 10, 30, 13, 0)
 		poiLocalComercial4.configurarDisponibilidadDelPoi(6, 17, 0, 20, 30)
 		
-		
 		//Ingreso los bancos al repo
-		RepoPoi.instance.create(new Banco("Banco Santander", -34.528961, -58.481043))
+		RepoPoi.getInstance().create(new Banco("Banco Santander", -34.528961, -58.481043))
 		//Ingreso las paradas de colectivo al repo
-		RepoPoi.instance.create(new ParadaDeColectivo("Parada 1",-34.515246,-58.488491, "71"))
+		RepoPoi.getInstance().create(new ParadaDeColectivo("Parada 1",-34.515246,-58.488491, "71"))
 		//Ingreso los locales comerciales al repo
-		RepoPoi.instance.create(poiLocalComercial1)
-		RepoPoi.instance.create(poiLocalComercial2)
-		RepoPoi.instance.create(poiLocalComercial3)
-		RepoPoi.instance.create(poiLocalComercial4)
-		
+		RepoPoi.getInstance().create(poiLocalComercial1)
+		RepoPoi.getInstance().create(poiLocalComercial2)
+		RepoPoi.getInstance().create(poiLocalComercial3)
+		RepoPoi.getInstance().create(poiLocalComercial4)
+	}
+	
+	@After
+	def restablecerSistema(){
+		RepoPoi.getInstance().delete(poiLocalComercial1)
+		RepoPoi.getInstance().delete(poiLocalComercial2)
+		RepoPoi.getInstance().delete(poiLocalComercial3)
+		RepoPoi.getInstance().delete(poiLocalComercial4)
+	}
+	
+	@Test
+	def testDeSize(){
+		Assert.assertEquals(6, RepoPoi.instance.size)
 	}
 	
 	@Test

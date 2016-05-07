@@ -1,7 +1,8 @@
 package ar.com.scorpion.SistemaDeConsultas
 
-import org.uqbar.commons.model.CollectionBasedRepo
 import java.util.function.Predicate
+import org.uqbar.commons.model.CollectionBasedRepo
+import java.util.List
 
 class RepoPoi extends CollectionBasedRepo<Poi> {
 	
@@ -32,6 +33,18 @@ class RepoPoi extends CollectionBasedRepo<Poi> {
 	
 	def getCriterioPorDireccion(String direccion){
 		[ Poi poi | poi.direccion.toLowerCase.contains(direccion.toLowerCase) ] as Predicate<Poi>
+	}
+		
+	def getCriterioPorTexto(String texto) {
+		[ Poi poi | poi.nombre.equals(texto)] 
+	}
+	
+	def search(String texto) {
+    	allInstances.filter [ poi | poi.nombre.equals(texto) ]
+	}
+	
+	def size(){
+		allInstances.size
 	}
 	
 }

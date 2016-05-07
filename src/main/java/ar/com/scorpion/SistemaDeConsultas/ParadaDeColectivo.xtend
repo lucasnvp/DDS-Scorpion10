@@ -10,9 +10,7 @@ class ParadaDeColectivo extends Poi{
 		
 	new(String nombreDelPoi,Double longitudDelPoi,Double latitudDelPoi, String n){
 		nombre = nombreDelPoi
-		longitud = longitudDelPoi
-		latitud = latitudDelPoi
-		pointDelPoi = new Point(longitud, latitud)
+		pointDelPoi = new Point(longitudDelPoi, latitudDelPoi)
 
 		numeroDeLinea = n
 		palabrasClave = new ArrayList()
@@ -27,8 +25,8 @@ class ParadaDeColectivo extends Poi{
 		true
 	}	
 	
-	override contiene(String texto) {
-		return (super.contiene(texto) || numeroDeLinea.equals(texto))
+	override contieneExtra(String texto) {
+		return (numeroDeLinea.equals(texto))
 		
 	}
 }

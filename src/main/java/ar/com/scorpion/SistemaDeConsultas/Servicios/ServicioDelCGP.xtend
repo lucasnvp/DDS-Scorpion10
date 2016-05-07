@@ -1,6 +1,6 @@
 package ar.com.scorpion.SistemaDeConsultas.Servicios
 
-import ar.com.scorpion.SistemaDeConsultas.DisponibilidadDelPoi
+import ar.com.scorpion.SistemaDeConsultas.Disponibilidad.DisponibilidadDelPoi
 import org.joda.time.DateTime
 
 class ServicioDelCGP {
@@ -19,7 +19,7 @@ class ServicioDelCGP {
 		disponibilidadDelPoi.consultaDeDisponibilidad( fecha, rubroDelCGP)
 	}
 	
-	def buscarRubro(String rubroDelCGP){
-		nombreDelServicio.contains(rubroDelCGP)
+	def buscarServicio(String servicioDelCGP){
+		nombreDelServicio.contains(servicioDelCGP)
 	}
 }

@@ -1,5 +1,6 @@
 package ar.com.scorpion.SistemaDeConsultas
 
+import ar.com.scorpion.SistemaDeConsultas.Disponibilidad.DisponibilidadDelPoi
 import java.util.ArrayList
 import org.uqbar.geodds.Point
 
@@ -10,9 +11,7 @@ class LocalComercial extends Poi{
 	
 	new(String nombreDelPoi, Double longitudDelPoi, Double latitudDelPoi, Double cercaniaDelPoi, String rubroDelLocal) {
 		nombre = nombreDelPoi
-		longitud = longitudDelPoi
-		latitud = latitudDelPoi
-		pointDelPoi = new Point(longitud, latitud)
+		pointDelPoi = new Point(longitudDelPoi, latitudDelPoi)
 		cercaniaDistancia = cercaniaDelPoi
 		rubroDelPoi = rubroDelLocal
 		palabrasClave = new ArrayList()
@@ -24,8 +23,8 @@ class LocalComercial extends Poi{
 		seEncuentraAMenosDe(cercaniaDistancia, consultaDePoint)
 	}
 					
-	override contiene(String texto) {
-		return (super.contiene(texto) || rubroDelPoi.contains(texto))
+	override contieneExtra(String texto) {
+		return (rubroDelPoi.contains(texto))
 	}
 
 }
